@@ -3,25 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ContentViewSwift /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ContentViewSwift /* ContentView.swift */; };
-		MobileToolAppSwift /* MobileToolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = MobileToolAppSwift /* MobileToolApp.swift */; };
-		AssetsXCassets /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AssetsXCassets /* Assets.xcassets */; };
+		A100000100000000000001 /* MobileToolApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000100000000000001 /* MobileToolApp.swift */; };
+		A100000100000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000100000000000002 /* ContentView.swift */; };
+		A100000100000000000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A200000100000000000003 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		MobileToolApp /* MobileTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		MobileToolAppSwift /* MobileToolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileToolApp.swift; sourceTree = "<group>"; };
-		ContentViewSwift /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		InfoPlist /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AssetsXCassets /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A200000100000000000001 /* MobileToolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileToolApp.swift; sourceTree = "<group>"; };
+		A200000100000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A200000100000000000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A200000100000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A200000100000000000005 /* MobileTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FrameworksBuildPhase /* Frameworks */ = {
+		A300000100000000000001 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -31,43 +31,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		MobileToolGroup /* MobileTool */ = {
+		A400000100000000000001 /* MobileTool */ = {
 			isa = PBXGroup;
 			children = (
-				MobileToolAppSwift /* MobileToolApp.swift */,
-				ContentViewSwift /* ContentView.swift */,
-				InfoPlist /* Info.plist */,
-				AssetsXCassets /* Assets.xcassets */,
+				A200000100000000000001 /* MobileToolApp.swift */,
+				A200000100000000000002 /* ContentView.swift */,
+				A200000100000000000004 /* Info.plist */,
+				A200000100000000000003 /* Assets.xcassets */,
 			);
 			path = MobileTool;
 			sourceTree = "<group>";
 		};
-		ProductsGroup /* Products */ = {
+		A400000100000000000002 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				MobileToolApp /* MobileTool.app */,
+				A200000100000000000005 /* MobileTool.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		RootGroup /* root */ = {
+		A400000100000000000003 /* root */ = {
 			isa = PBXGroup;
 			children = (
-				MobileToolGroup /* MobileTool */,
-				ProductsGroup /* Products */,
+				A400000100000000000001 /* MobileTool */,
+				A400000100000000000002 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		MobileToolTarget /* MobileTool */ = {
+		A500000100000000000001 /* MobileTool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = MobileToolTargetConfigList /* Build configuration list for PBXNativeTarget "MobileTool" */;
+			buildConfigurationList = A700000200000000000001 /* Build configuration list for PBXNativeTarget "MobileTool" */;
 			buildPhases = (
-				SourcesBuildPhase /* Sources */,
-				FrameworksBuildPhase /* Frameworks */,
-				ResourcesBuildPhase /* Resources */,
+				A600000100000000000001 /* Sources */,
+				A300000100000000000001 /* Frameworks */,
+				A600000100000000000002 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -75,135 +75,111 @@
 			);
 			name = MobileTool;
 			productName = MobileTool;
-			productReference = MobileToolApp /* MobileTool.app */;
+			productReference = A200000100000000000005 /* MobileTool.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		ProjectObject /* Project object */ = {
+		A800000100000000000001 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					MobileToolTarget = {
-						CreatedOnToolsVersion = 14.0;
+					A500000100000000000001 = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
-			buildConfigurationList = ProjectConfigList /* Build configuration list for PBXProject "MobileTool" */;
-			compatibilityVersion = "Xcode 14.0";
+			buildConfigurationList = A700000100000000000001 /* Build configuration list for PBXProject "MobileTool" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = RootGroup /* root */;
-			productRefGroup = ProductsGroup /* Products */;
+			mainGroup = A400000100000000000003 /* root */;
+			productRefGroup = A400000100000000000002 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				MobileToolTarget /* MobileTool */,
+				A500000100000000000001 /* MobileTool */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		ResourcesBuildPhase /* Resources */ = {
+		A600000100000000000002 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AssetsXCassets /* Assets.xcassets in Resources */,
+				A100000100000000000003 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		SourcesBuildPhase /* Sources */ = {
+		A600000100000000000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				MobileToolAppSwift /* MobileToolApp.swift in Sources */,
-				ContentViewSwift /* ContentView.swift in Sources */,
+				A100000100000000000001 /* MobileToolApp.swift in Sources */,
+				A100000100000000000002 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		DebugConfig /* Debug */ = {
+		A900000100000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		ReleaseConfig /* Release */ = {
+		A900000100000000000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		MobileToolDebugConfig /* Debug */ = {
+		A900000200000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MobileTool/Info.plist;
@@ -214,20 +190,18 @@
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changxuijing.mobiletool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		MobileToolReleaseConfig /* Release */ = {
+		A900000200000000000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = MobileTool/Info.plist;
@@ -238,7 +212,6 @@
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changxuijing.mobiletool;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -247,25 +220,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ProjectConfigList /* Build configuration list for PBXProject "MobileTool" */ = {
+		A700000100000000000001 /* Build configuration list for PBXProject "MobileTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DebugConfig /* Debug */,
-				ReleaseConfig /* Release */,
+				A900000100000000000001 /* Debug */,
+				A900000100000000000002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		MobileToolTargetConfigList /* Build configuration list for PBXNativeTarget "MobileTool" */ = {
+		A700000200000000000001 /* Build configuration list for PBXNativeTarget "MobileTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				MobileToolDebugConfig /* Debug */,
-				MobileToolReleaseConfig /* Release */,
+				A900000200000000000001 /* Debug */,
+				A900000200000000000002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = ProjectObject /* Project object */;
+	rootObject = A800000100000000000001 /* Project object */;
 }
