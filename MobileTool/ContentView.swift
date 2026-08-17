@@ -2,7 +2,6 @@ import SwiftUI
 import UIKit
 import AVFoundation
 import AudioToolbox
-import CoreTelephony
 
 // 主界面
 struct ContentView: View {
@@ -240,38 +239,9 @@ struct BatteryDetailView: View {
     }
     
     func readBatteryHealth() {
-        // 尝试通过IOKit读取电池健康
-        let health = getBatteryHealthFromIOKit()
-        if health > 0 {
-            batteryHealth = "\(health)%"
-        } else {
-            batteryHealth = "请查看系统设置"
-        }
-    }
-    
-    func getBatteryHealthFromIOKit() -> Int {
-        // 使用IOKit私有API读取电池健康
-        // 注意：这在App Store中可能被拒绝，但企业签名/越狱可用
-        let entry = IORegistryEntryFromPath(kIOMainPortDefault, "IOService:/AppleARMIODevice/appleefuse/AppleSmartBattery")
-        if entry == 0 {
-            return 0
-        }
-        
-        var capacity: Int = 0
-        if let data = IORegistryEntryCreateCFProperty(entry, "AppleRawMaxCapacity" as CFString, kCFAllocatorDefault, 0)?.takeRetainedValue() as? Int {
-            capacity = data
-        }
-        
-        IOObjectRelease(entry)
-        
-        // iPhone设计容量通常在2800-4000mAh之间
-        // 这里简化处理，实际需要读取设计容量
-        if capacity > 0 {
-            let designCapacity = 3500 // 近似值
-            return min(100, Int(Double(capacity) / Double(designCapacity) * 100))
-        }
-        
-        return 0
+        // iOS普通App无法直接读取电池健康（需要私有API）
+        // 显示系统设置指引
+        batteryHealth = "请查看系统设置"
     }
 }
 
@@ -518,7 +488,6 @@ struct TouchTestView: View {
                         Color.black.opacity(0.9)
                             .ignoresSafeArea()
                         
-                        // 显示触摸点
                         ForEach(Array(touchedPoints), id: \.self) { point in
                             Circle()
                                 .fill(Color.green.opacity(0.6))
@@ -544,13 +513,13 @@ struct TouchTestView: View {
                             .onChanged { value in
                                 touchedPoints.insert(value.location)
                             }
+                            .onEnded { value in
+                                if value.location.x < 80 && value.location.y < 80 {
+                                    isTesting = false
+                                    testComplete = true
+                                }
+                            }
                     )
-                    .onTapGesture { location in
-                        if location.x < 50 && location.y < 50 {
-                            isTesting = false
-                            testComplete = true
-                        }
-                    }
                 }
             } else {
                 List {
@@ -578,7 +547,7 @@ struct TouchTestView: View {
                     }
                     
                     Section(header: Text("说明")) {
-                        Text("• 在屏幕上滑动，绿色圆圈表示触摸位置\n• 检查屏幕边缘和角落是否正常响应\n• 点击左上角返回")
+                        Text("在屏幕上滑动，绿色圆圈表示触摸位置，点击左上角返回")
                             .font(.footnote)
                             .foregroundColor(.gray)
                     }
@@ -589,8 +558,6 @@ struct TouchTestView: View {
         }
     }
 }
-
-// 扬声器检测页面
 struct SpeakerTestView: View {
     @State private var isPlaying = false
     @State private var testResult = ""
