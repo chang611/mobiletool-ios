@@ -41,7 +41,7 @@ struct ContentView: View {
                     HStack {
                         Text("应用版本")
                         Spacer()
-                        Text("1.0.4")
+                        Text("1.0.5")
                             .foregroundColor(.gray)
                     }
                 }
@@ -354,7 +354,7 @@ struct HardwareTestView: View {
             DispatchQueue.main.async { currentTest = "麦克风" }
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(.record, mode: .default)
+                try audioSession.setCategory(.playAndRecord, mode: .default)
                 try audioSession.setActive(true)
                 DispatchQueue.main.async { testResults["麦克风"] = "正常" }
             } catch {
@@ -698,37 +698,46 @@ struct MicrophoneTestView: View {
     }
     
     func startRecording() {
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(.record, mode: .default)
-            try audioSession.setActive(true)
-            
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-            let filePath = URL(fileURLWithPath: documentsPath).appendingPathComponent("test_recording.m4a")
-            
-            let settings: [String: Any] = [
-                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                AVSampleRateKey: 44100.0,
-                AVNumberOfChannelsKey: 1,
-                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-            ]
-            
-            recorder = try AVAudioRecorder(url: filePath, settings: settings)
-            recorder?.isMeteringEnabled = true
-            recorder?.record()
-            isRecording = true
-            
-            // 更新音量
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-                guard let recorder = recorder, recorder.isRecording else {
-                    timer.invalidate()
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            DispatchQueue.main.async {
+                if !granted {
+                    testResult = "未授权麦克风访问，请在设置中开启"
                     return
                 }
-                recorder.updateMeters()
-                audioLevel = pow(10, recorder.averagePower(forChannel: 0) / 20)
+                
+                let audioSession = AVAudioSession.sharedInstance()
+                do {
+                    try audioSession.setCategory(.playAndRecord, mode: .default)
+                    try audioSession.setActive(true)
+                    
+                    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+                    let filePath = URL(fileURLWithPath: documentsPath).appendingPathComponent("test_recording.m4a")
+                    
+                    let settings: [String: Any] = [
+                        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                        AVSampleRateKey: 44100.0,
+                        AVNumberOfChannelsKey: 1,
+                        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+                    ]
+                    
+                    recorder = try AVAudioRecorder(url: filePath, settings: settings)
+                    recorder?.isMeteringEnabled = true
+                    recorder?.record()
+                    isRecording = true
+                    
+                    Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                        guard let recorder = recorder, recorder.isRecording else {
+                            timer.invalidate()
+                            return
+                        }
+                        recorder.updateMeters()
+                        let power = recorder.averagePower(forChannel: 0)
+                        audioLevel = max(0, min(1, pow(10, power / 20)))
+                    }
+                } catch {
+                    testResult = "录音启动失败"
+                }
             }
-        } catch {
-            testResult = "无法访问麦克风，请在设置中授权"
         }
     }
     
@@ -921,10 +930,37 @@ struct CameraPreviewView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
+        viewController.view.backgroundColor = .black
+        
+        // 检查相机权限
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        if status != .authorized {
+            let label = UILabel()
+            label.text = "需要相机权限\n请在设置中开启"
+            label.textAlignment = .center
+            label.numberOfLines = 0
+            label.textColor = .white
+            label.frame = viewController.view.bounds
+            label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            viewController.view.addSubview(label)
+            
+            if status == .notDetermined {
+                AVCaptureDevice.requestAccess(for: .video) { _ in }
+            }
+            return viewController
+        }
+        
         let captureSession = AVCaptureSession()
         
         guard let camera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position),
               let input = try? AVCaptureDeviceInput(device: camera) else {
+            let label = UILabel()
+            label.text = "无法打开相机"
+            label.textAlignment = .center
+            label.textColor = .white
+            label.frame = viewController.view.bounds
+            label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            viewController.view.addSubview(label)
             return viewController
         }
         
